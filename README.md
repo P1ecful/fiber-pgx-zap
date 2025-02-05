@@ -1,1 +1,1 @@
-# openapi-gen MongoDB slog gin echo fiber
+# openapi-gen mongodb slog (gin echo fiber)
