@@ -1,1 +1,1 @@
-# openapi-gen mongodb slog (gin echo fiber)
+# fiber sqlite slog
