@@ -1,29 +1,34 @@
 package fiber
 
 import (
+	"efmo-test/internal/service"
 	"github.com/gofiber/fiber/v2"
-	"log/slog"
-	"srv-tmpl/internal/service"
+	"go.uber.org/zap"
 )
 
 type Controller struct {
-	logger *slog.Logger
-	srv    *service.Service
+	srv    service.EfMoService
+	logger *zap.Logger
 	app    *fiber.App
 }
 
-func NewController(logger *slog.Logger, srv *service.Service, fiber *fiber.App) *Controller {
+func NewController(logger *zap.Logger, srv service.EfMoService,
+	fiber *fiber.App) *Controller {
 	return &Controller{
-		logger: logger,
 		srv:    srv,
+		logger: logger,
 		app:    fiber,
 	}
 }
 
-func (ctrl *Controller) RegisterRoutes() {
-	Methods := ctrl.app.Group("/methods")
+func (ctrl *Controller) ConfigureRoutes() {
+	song := ctrl.app.Group("")
 	{
-		Methods.Get("", ctrl.GetMethodHandler)
-		Methods.Post("", ctrl.PostMethodHandler)
+		song.Get("", ctrl.GetSongLibraryHandler)
+		song.Get("info", ctrl.GetSongInfoHandler)
+		song.Get("text", ctrl.GetSongTextHandler)
+		song.Delete("", ctrl.DeleteSongHandler)
+		song.Put("", ctrl.UpdateSongHandler)
+		song.Post("", ctrl.AddSongHandler)
 	}
 }

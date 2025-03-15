@@ -1,7 +1,0 @@
-env: "local"
-
-service:
-  port: ""
-  timeout: ""
-
-storage:

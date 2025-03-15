@@ -1,0 +1,178 @@
+openapi: 3.0.0
+info:
+  title: Music API
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Get song library
+      parameters:
+        - name: release_date
+          in: query
+          required: true
+          description: The name of the song
+          schema:
+            type: string
+        - name: song_group
+          in: query
+          required: true
+          description: The name of the group
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Song:
+                      type: string
+                    Group:
+                      type: string
+                    ReleaseDate:
+                      type: string
+                    Text:
+                      type: string
+                    Link:
+                      type: string
+
+    delete:
+      summary: Delete a song
+      parameters:
+        - name: song
+          in: query
+          required: true
+          description: The name of the song
+          schema:
+            type: string
+        - name: group
+          in: query
+          required: true
+          description: The name of the group
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Song deleted successfully
+
+    put:
+      summary: Update song information
+      parameters:
+        - name: song
+          in: query
+          required: true
+          description: The name of the song
+          schema:
+            type: string
+        - name: group
+          in: query
+          required: true
+          description: The name of the group
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                release_date:
+                  type: string
+                  format: date
+                text:
+                  type: string
+                link:
+                  type: string
+      responses:
+        '200':
+          description: Song updated successfully
+
+    post:
+      summary: Create a new song
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                song:
+                  type: string
+                group:
+                  type: string
+      responses:
+        '201':
+          description: Song created successfully
+
+  /info/:
+    get:
+      summary: Get song information
+      parameters:
+        - name: song
+          in: query
+          required: true
+          description: The name of the song
+          schema:
+            type: string
+        - name: group
+          in: query
+          required: true
+          description: The name of the group
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with song info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Song:
+                    type: string
+                  Group:
+                    type: string
+                  ReleaseDate:
+                    type: string
+                  Text:
+                    type: string
+                  Link:
+                    type: string
+
+  /text/:
+    get:
+      summary: Get song text
+      parameters:
+        - name: song
+          in: query
+          required: true
+          description: The name of the song
+          schema:
+            type: string
+        - name: group
+          in: query
+          required: true
+          description: The name of the group
+          schema:
+            type: string
+        - name: verse
+          in: query
+          required: true
+          description: The verse number
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response with song text
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Text:
+                    type: string
