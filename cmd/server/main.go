@@ -19,7 +19,6 @@ func main() {
 
 	config := cfg.LoadConfig("config/config.env", logger)
 	config.Storage.SetURI(logger)
-	migrateStorage()
 
 	storage := pgx.NewPGX(logger, config.Storage.GetURI())
 
@@ -52,8 +51,4 @@ func main() {
 	}
 
 	logger.Info("Server stopped")
-}
-
-func migrateStorage() {
-	fmt.Println("migrating storage")
 }
