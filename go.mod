@@ -3,9 +3,10 @@ module efmo-test
 go 1.23.4
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.6
+	github.com/gofiber/fiber/v2 v2.52.8
 	github.com/jackc/pgx/v5 v5.7.2
 	github.com/joho/godotenv v1.5.1
+	go.uber.org/mock v0.5.2
 	go.uber.org/zap v1.27.0
 )
 

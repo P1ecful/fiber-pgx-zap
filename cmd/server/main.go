@@ -6,12 +6,12 @@ import (
 	controller "efmo-test/internal/controller/http/fiber"
 	"efmo-test/internal/service"
 	"efmo-test/internal/storage/pgx"
-	"fmt"
-	"github.com/gofiber/fiber/v2"
-	"go.uber.org/zap"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/gofiber/fiber/v2"
+	"go.uber.org/zap"
 )
 
 func main() {
