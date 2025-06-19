@@ -3,9 +3,11 @@ package dto
 import "time"
 
 type Song struct {
-	Song        string
-	Group       string
-	ReleaseDate *time.Time
-	Text        *string
-	Link        *string
+	SongId      int
+	AlbumId     int
+	AuthorId    int
+	Title       string
+	ReleaseDate time.Time
+	SongText    *string
+	SongUrl     *string
 }

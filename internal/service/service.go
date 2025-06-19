@@ -3,18 +3,17 @@ package service
 import (
 	"context"
 	"efmo-test/internal/models/dto"
-	"efmo-test/internal/service/common"
 	"efmo-test/internal/storage"
 	"go.uber.org/zap"
 )
 
-type EfMoService interface {
-	GetSongLibrary(ctx context.Context, group *string, date *string) ([]dto.Song, error)
-	GetSongText(ctx context.Context, song string, group string, verse int) (string, error)
-	DeleteSong(ctx context.Context, song string, group string) error
-	UpdateSong(ctx context.Context, song dto.Song) error
-	AddSong(ctx context.Context, song string, group string) error
-	GetSongInfo(ctx context.Context, song string, group string) (dto.Song, error)
+type SongService interface {
+	GetSongLibrary(ctx context.Context, author *int, album *int, date *string) ([]dto.Song, error)
+	GetSong(ctx context.Context, id int) (dto.Song, error)
+	GetSongText(ctx context.Context, id int, verse int) (string, error)
+	AddSong(ctx context.Context, author int, album int, songtext *string, url *string) error
+	UpdateSong(ctx context.Context, id int, title *string, text *string, url *string) error
+	DeleteSong(ctx context.Context, song int) error
 }
 
 type Service struct {
@@ -29,40 +28,26 @@ func NewService(logger *zap.Logger, storage storage.Storage) *Service {
 	}
 }
 
-func (s *Service) GetSongLibrary(ctx context.Context, group *string, date *string) ([]dto.Song, error) {
-	return s.storage.GetSongList(ctx, group, date)
+func (s *Service) GetSongLibrary(ctx context.Context, author *int, album *int, date *string) ([]dto.Song, error) {
+	return nil, nil
 }
 
-func (s *Service) GetSongText(ctx context.Context, song string, group string, verse int) (string, error) {
-	text, err := s.storage.GetSongText(ctx, song, group)
-	if err != nil {
-		return "", err
-	}
-
-	verseFromText, err := common.GetVerse(text, verse)
-	if err != nil {
-		s.logger.Debug("failed to get verse from text",
-			zap.String("song", song),
-			zap.Error(err),
-		)
-
-		return "", err
-	}
-	return verseFromText, nil
+func (s *Service) GetSong(ctx context.Context, id int) (dto.Song, error) {
+	return dto.Song{}, nil
 }
 
-func (s *Service) DeleteSong(ctx context.Context, song string, group string) error {
-	return s.storage.DeleteSong(ctx, song, group)
+func (s *Service) GetSongText(ctx context.Context, id int, verse int) (string, error) {
+	return "", nil
 }
 
-func (s *Service) UpdateSong(ctx context.Context, song dto.Song) error {
-	return s.storage.UpdateSong(ctx, song)
+func (s *Service) AddSong(ctx context.Context, author int, album int, songtext *string, url *string) error {
+	return nil
 }
 
-func (s *Service) AddSong(ctx context.Context, song string, group string) error {
-	return s.storage.CreateSong(ctx, song, group)
+func (s *Service) UpdateSong(ctx context.Context, id int, title *string, text *string, url *string) error {
+	return nil
 }
 
-func (s *Service) GetSongInfo(ctx context.Context, song string, group string) (dto.Song, error) {
-	return s.storage.GetSong(ctx, song, group)
+func (s *Service) DeleteSong(ctx context.Context, song int) error {
+	return nil
 }

@@ -11,7 +11,7 @@ tasks:
     cmd: migrate create -ext sql -dir ./migrations -seq song
 
   gen-mock:
-    desc: "generating mock service file"
+    desc: "generating mocks service file"
     cmds:
-      - mockgen -source=internal/service/service.go -destination=test/mock/mock_service.go -package=mock
-      - mockgen -source=internal/storage/interface.go -destination=test/mock/mock_storage.go -package=mock
+      - mockgen -source=internal/service/service.go -destination=test/mocks/mock_service.go -package=mocks
+      - mockgen -source=internal/storage/interface.go -destination=test/mocks/mock_storage.go -package=mocks

@@ -1,7 +1,10 @@
-create table song(
-                     song_name text not null unique,
-                     song_group text not null,
-                     release_date date,
+create table Song(
+                     id int not null primary key,
+                     album_id int not null,
+                     author_id int not null,
+                     title text not null,
+                     release_date date not null,
                      song_text text,
-                     link text
+                     song_link text,
+
 );
