@@ -10,6 +10,10 @@ tasks:
     desc: "generating migration files"
     cmd: migrate create -ext sql -dir ./migrations -seq song
 
+  migrate-down:
+    desc: "migrate down"
+    cmd: migrate -path ./migrations -database "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable" down
+
   gen-mock:
     desc: "generating mocks service file"
     cmds:

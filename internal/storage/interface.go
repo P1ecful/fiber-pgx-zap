@@ -7,11 +7,11 @@ import (
 
 type Storage interface {
 	Ping(ctx context.Context) error
-	CreateSong(ctx context.Context, song string, group string) error
-	DeleteSong(ctx context.Context, song string, group string) error
-	UpdateSong(ctx context.Context, song dto.Song) error
-	GetSong(ctx context.Context, song string, group string) (dto.Song, error)
-	GetSongList(ctx context.Context, group *string, date *string) ([]dto.Song, error)
-	GetSongText(ctx context.Context, song string, group string) (string, error)
 	Disconnect()
+	GetSongLibrary(ctx context.Context) ([]dto.Song, error)
+	GetSongText(ctx context.Context, id int) (string, error)
+	GetSong(ctx context.Context, id int) (dto.Song, error)
+	CreateSong(ctx context.Context, song dto.Song) error
+	UpdateSong(ctx context.Context, id int, title *string, text *string, url *string) error
+	DeleteSong(ctx context.Context, id int) error
 }
