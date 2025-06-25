@@ -16,6 +16,4 @@ tasks:
 
   gen-mock:
     desc: "generating mocks service file"
-    cmds:
-      - mockgen -source=internal/service/service.go -destination=test/mocks/mock_service.go -package=mocks
-      - mockgen -source=internal/storage/interface.go -destination=test/mocks/mock_storage.go -package=mocks
+    cmd: mockgen -source=internal/storage/interface.go -destination=test/mocks/mock_storage.go -package=mocks

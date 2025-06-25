@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	getSongLibraryQuery = `SELECT * FROM song` // !TODO запрос, пока отложить
+	getSongLibraryQuery = `SELECT * FROM song`
 	getSongQuery        = `SELECT * FROM song WHERE id = @id;`
 	getSongTextQuery    = `SELECT song_text FROM song WHERE id = @id;`
 	createSongQuery     = `INSERT INTO song VALUES  (@id, @album_id, @author_id, @title, @release_date, @song_text, @song_link);`
