@@ -8,13 +8,15 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"go.uber.org/zap"
+	"math/rand"
+	"time"
 )
 
 const (
 	getSongLibraryQuery = `SELECT * FROM song` // !TODO запрос, пока отложить
 	getSongQuery        = `SELECT * FROM song WHERE id = @id;`
 	getSongTextQuery    = `SELECT song_text FROM song WHERE id = @id;`
-	createSongQuery     = `INSERT INTO song  VALUES  (@album_id, @author_id, @title, @release_date, @song_text, @song_link);`
+	createSongQuery     = `INSERT INTO song VALUES  (@id, @album_id, @author_id, @title, @release_date, @song_text, @song_link);`
 	updateSongQuery     = `UPDATE song SET title = $1, song_text = $2, song_link = $3 WHERE id = @id;`
 	deleteSongQuery     = `DELETE FROM song WHERE id = @id;`
 )
@@ -122,11 +124,14 @@ func (p *PGX) GetSong(ctx context.Context, id int) (dto.Song, error) {
 }
 
 func (p *PGX) CreateSong(ctx context.Context, song dto.Song) error {
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+
 	args := pgx.NamedArgs{
+		"id":           rand.Intn(900000) + 100000,
 		"album_id":     song.AlbumId,
 		"author_id":    song.AuthorId,
 		"title":        song.Title,
-		"release_date": song.ReleaseDate,
+		"release_date": song.ReleaseDate.Format("2006-01-02"),
 		"song_text":    song.SongText,
 		"song_link":    song.SongUrl,
 	}

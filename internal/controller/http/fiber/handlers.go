@@ -19,7 +19,7 @@ func (ctrl *Controller) GetSongLibraryHandler(ctx *fiber.Ctx) error {
 		return ctx.SendStatus(fiber.StatusBadRequest)
 	}
 
-	result, err := ctrl.srv.GetSongLibrary(context.Background(), query.Author, query.Album, query.Date)
+	result, err := ctrl.srv.GetSongLibrary(context.Background())
 	if err != nil {
 		return ctx.SendStatus(fiber.StatusInternalServerError)
 	}
@@ -76,17 +76,17 @@ func (ctrl *Controller) GetSongTextHandler(ctx *fiber.Ctx) error {
 }
 
 func (ctrl *Controller) AddSongHandler(ctx *fiber.Ctx) error {
-	var req models.AddSongRequest
+	var req models.CreateSongRequest
 
 	if err := ctx.BodyParser(&req); err != nil {
 		ctrl.logger.Debug("can`t to parse body requests", zap.Error(err))
 		return ctx.SendStatus(fiber.StatusBadRequest)
 	}
 
-	if err := ctrl.srv.AddSong(
+	if err := ctrl.srv.CreateSong(
 		context.Background(),
 		req.AuthorId, req.AlbumId,
-		req.SongText,
+		req.Title, req.SongText,
 		req.SongUrl); err != nil {
 		return ctx.SendStatus(fiber.StatusInternalServerError)
 	}

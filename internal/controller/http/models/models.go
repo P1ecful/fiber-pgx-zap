@@ -15,9 +15,10 @@ type GetSongTextResponse struct {
 	Text string `json:"text"`
 }
 
-type AddSongRequest struct {
+type CreateSongRequest struct {
 	AuthorId int     `json:"author_id"`
 	AlbumId  int     `json:"album_id"`
+	Title    string  `json:"title"`
 	SongText *string `json:"song_text"`
 	SongUrl  *string `json:"song_url"`
 }

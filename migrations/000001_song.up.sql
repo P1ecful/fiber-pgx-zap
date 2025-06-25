@@ -5,6 +5,6 @@ create table Song(
                      title text not null,
                      release_date date not null,
                      song_text text,
-                     song_link text,
+                     song_link text
 
 );
