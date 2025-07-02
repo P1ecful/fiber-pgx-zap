@@ -2,7 +2,8 @@ package storage
 
 import (
 	"context"
-	"efmo-test/internal/models/dto"
+
+	"github.com/P1ecful/fiber-pgx-zap/internal/models/dto"
 )
 
 type Storage interface {

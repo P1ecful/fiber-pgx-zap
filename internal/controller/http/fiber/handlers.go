@@ -2,7 +2,8 @@ package fiber
 
 import (
 	"context"
-	"efmo-test/internal/controller/http/models"
+
+	"github.com/P1ecful/fiber-pgx-zap/internal/controller/http/models"
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"
 )

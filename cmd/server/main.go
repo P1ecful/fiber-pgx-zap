@@ -2,13 +2,14 @@ package main
 
 import (
 	"context"
-	cfg "efmo-test/internal/config"
-	controller "efmo-test/internal/controller/http/fiber"
-	"efmo-test/internal/service"
-	"efmo-test/internal/storage/pgx"
 	"os"
 	"os/signal"
 	"syscall"
+
+	cfg "github.com/P1ecful/fiber-pgx-zap/internal/config"
+	controller "github.com/P1ecful/fiber-pgx-zap/internal/controller/http/fiber"
+	"github.com/P1ecful/fiber-pgx-zap/internal/service"
+	"github.com/P1ecful/fiber-pgx-zap/internal/storage/pgx"
 
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"

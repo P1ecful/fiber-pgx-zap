@@ -2,11 +2,12 @@ package service
 
 import (
 	"context"
-	"efmo-test/internal/models/dto"
-	"efmo-test/internal/service/common"
-	"efmo-test/internal/storage"
-	"go.uber.org/zap"
 	"time"
+
+	"github.com/P1ecful/fiber-pgx-zap/internal/models/dto"
+	"github.com/P1ecful/fiber-pgx-zap/internal/service/common"
+	"github.com/P1ecful/fiber-pgx-zap/internal/storage"
+	"go.uber.org/zap"
 )
 
 type SongService interface {

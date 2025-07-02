@@ -2,14 +2,15 @@ package pgx
 
 import (
 	"context"
-	"efmo-test/internal/models/dto"
 	"errors"
+	"math/rand"
+	"time"
+
+	"github.com/P1ecful/fiber-pgx-zap/internal/models/dto"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"go.uber.org/zap"
-	"math/rand"
-	"time"
 )
 
 const (

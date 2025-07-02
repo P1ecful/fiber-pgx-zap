@@ -1,7 +1,7 @@
 package fiber
 
 import (
-	"efmo-test/internal/service"
+	"github.com/P1ecful/fiber-pgx-zap/internal/service"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"go.uber.org/zap"

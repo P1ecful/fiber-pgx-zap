@@ -15,5 +15,5 @@ tasks:
     cmd: migrate -path ./migrations -database "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable" down
 
   gen-mock:
-    desc: "generating mocks service file"
-    cmd: mockgen -source=internal/storage/interface.go -destination=test/mocks/mock_storage.go -package=mocks
+    desc: "generating mocks for controller"
+    cmd: mockgen -source=internal/controller/http/interface.go -destination=tests/mocks/controller_mock.go -package=mocks
